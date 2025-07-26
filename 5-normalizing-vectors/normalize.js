@@ -47,13 +47,7 @@ class Vec2 {
 		this.x /= len;
 		this.y /= len;
 	}
-	// Creates NEW Vector, rotates by angle (in radians [0 - 6.38])
-	rotate(angle) {
-		let result = new Vec2(0, 0);
-		result.x = this.x * Math.cos(angle) - this.y * Math.sin(angle);
-		result.y = this.x * Math.sin(angle) + this.y * Math.cos(angle);
-		return result;
-	}
+
 	draw(color) {
 		fill(color);
 		stroke('white');
@@ -123,9 +117,8 @@ class Vec3 {
 }
 
 // Create new vector objects
-let position = new Vec2(100, 0);
+let position = new Vec2(10, 20);
 let velocity = new Vec2(1, 2);
-let angle = 0;
 ////////////////////////////////////////////////////////////////////////////////
 // Setup function, called once at beginning of our app
 ////////////////////////////////////////////////////////////////////////////////
@@ -137,9 +130,7 @@ function setup() {
 // Draw function, called every frame several times per second
 ////////////////////////////////////////////////////////////////////////////////
 function draw() {
-	translate(windowWidth / 2, windowHeight / 2);
 	background('black');
-	let rotatedPosition = position.rotate(angle);
-	rotatedPosition.draw('red');
-	angle += 0.05;
+	position.normalize();
+	console.log('len of vec is now : ', position.mag());
 }
