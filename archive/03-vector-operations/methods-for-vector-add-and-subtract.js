@@ -17,10 +17,6 @@ class Vec2 {
 		this.x -= v.x;
 		this.y -= v.y;
 	}
-	scale(n) {
-		this.x *= n;
-		this.y *= n;
-	}
 	draw(color) {
 		fill(color);
 		stroke("white");
@@ -37,9 +33,6 @@ let velocity = new Vec2(2, 1);
 //////////////////////////////////////////////////////////
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	// scale vector by single value
-	position.scale(5.0);
-	console.log(position);
 }
 
 //////////////////////////////////////////////////////////
@@ -47,5 +40,7 @@ function setup() {
 //////////////////////////////////////////////////////////
 function draw() {
 	background("black");
+	// get velocity vector and for every frame add it to original
+	position.add(velocity);
 	position.draw("red");
 }
